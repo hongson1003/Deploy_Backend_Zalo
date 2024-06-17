@@ -7,8 +7,8 @@ require('dotenv').config()
 const SECRET = process.env.SECRET
 const MAX_AGE = process.env.MAX_AGE
 const secure = true
-const sameSite = 'None'
-const httpOnly = true
+const sameSite = 'Lax'
+const httpOnly = false
 
 const register = async (req, res, next) => {
   let user = req.body
