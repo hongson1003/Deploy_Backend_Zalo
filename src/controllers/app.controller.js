@@ -6,7 +6,7 @@ import appService from '../services/app.service'
 require('dotenv').config()
 const SECRET = process.env.SECRET
 const MAX_AGE = process.env.MAX_AGE
-const secure = false
+const secure = true
 const sameSite = 'Lax'
 const httpOnly = false
 
