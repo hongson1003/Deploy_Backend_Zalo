@@ -8,6 +8,7 @@ const SECRET = process.env.SECRET
 const MAX_AGE = process.env.MAX_AGE
 const secure = false
 const sameSite = 'Lax'
+const httpOnly = false
 
 const register = async (req, res, next) => {
   let user = req.body
@@ -32,13 +33,13 @@ const verifyUser = async (req, res, next) => {
     let rs = await appService.verifyUser(id, phoneNumber)
     if (rs.errCode === 0) {
       res.cookie('access_token', rs.data.access_token, {
-        httpOnly: true,
+        httpOnly: httpOnly,
         maxAge: +MAX_AGE * 60000,
         secure,
         sameSite,
       })
       res.cookie('refresh_token', rs.data.refresh_token, {
-        httpOnly: true,
+        httpOnly: httpOnly,
         maxAge: +MAX_AGE * 60000,
         secure,
         sameSite,
@@ -91,13 +92,13 @@ const check = async (req, res, next) => {
       const rs = await appService.updateToken(refresh_token)
       if (rs.errCode === 100) {
         res.cookie('access_token', rs.data.access_token, {
-          httpOnly: true,
+          httpOnly: httpOnly,
           maxAge: +MAX_AGE * 60000,
           secure,
           sameSite,
         })
         res.cookie('refresh_token', rs.data.refresh_token, {
-          httpOnly: true,
+          httpOnly: httpOnly,
           maxAge: +MAX_AGE * 60000,
           secure,
           sameSite,
